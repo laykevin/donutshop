@@ -21,14 +21,42 @@ export const menuData: IMenuItems[] = [
     category: "Donuts",
   },
   {
-    name: "Glazed Donut",
+    name: "Maple Bar",
     description:
       "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze",
     img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
     category: "Donuts",
   },
   {
-    name: "Chocolate Donut",
+    name: "Chocolate Bar",
+    description:
+      "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze ",
+    img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
+    category: "Donuts",
+  },
+  {
+    name: "Glazed Twist",
+    description:
+      "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze",
+    img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
+    category: "Donuts",
+  },
+  {
+    name: "Chocolate Twist",
+    description:
+      "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze ",
+    img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
+    category: "Donuts",
+  },
+  {
+    name: "Bear Claw",
+    description:
+      "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze",
+    img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
+    category: "Donuts",
+  },
+  {
+    name: "Donut Holes",
     description:
       "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze ",
     img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
