@@ -10,6 +10,7 @@ export type TMenu = IMenuItem[];
 export interface SetSortMenu {
   setSortMenu: React.Dispatch<React.SetStateAction<TMenu>>;
   scrollDir: string;
+  setScrollDir: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export type TMenuProps = {

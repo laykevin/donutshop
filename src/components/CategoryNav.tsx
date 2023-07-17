@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { menuData, IMenuItem, SetSortMenu, TMenuItemCategory } from "../lib";
 
-export const CategoryNav = ({ setSortMenu, scrollDir }: SetSortMenu) => {
+export const CategoryNav = ({
+  setSortMenu,
+  scrollDir,
+  setScrollDir,
+}: SetSortMenu) => {
   const [isActive, setIsActive] = useState<TMenuItemCategory>("All");
   const [isHovered, setIsHovered] = useState(false);
 
@@ -14,6 +18,7 @@ export const CategoryNav = ({ setSortMenu, scrollDir }: SetSortMenu) => {
 
   const filterMenuByCategory = (category: TMenuItemCategory) => {
     setIsActive(category === isActive ? "All" : category);
+    setScrollDir("scrolling up");
     category === "All" || category === isActive
       ? setSortMenu(menuData)
       : setSortMenu(
