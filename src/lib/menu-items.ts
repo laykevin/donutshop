@@ -2,7 +2,7 @@ interface IMenuItems {
   name: string;
   description: string;
   img: string;
-  category: "Donuts" | "Breakfast" | "Drinks";
+  category: "Donuts" | "Breakfast" | "Coffee & Drinks";
 }
 
 export const menuData: IMenuItems[] = [
@@ -95,27 +95,27 @@ export const menuData: IMenuItems[] = [
     description:
       "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze",
     img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
-    category: "Drinks",
+    category: "Coffee & Drinks",
   },
   {
     name: "Iced Coffee",
     description:
       "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze ",
     img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
-    category: "Drinks",
+    category: "Coffee & Drinks",
   },
   {
     name: "Thai Tea",
     description:
       "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze",
     img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
-    category: "Drinks",
+    category: "Coffee & Drinks",
   },
   {
     name: "Smoothies",
     description:
       "Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze Fluffy donut with glaze ",
     img: "https://assets.epicurious.com/photos/54b0226d766062b20344580a/4:3/w_775,h_581,c_limit/51160200_glazed-doughnuts_1x1.jpg",
-    category: "Drinks",
+    category: "Coffee & Drinks",
   },
 ];
