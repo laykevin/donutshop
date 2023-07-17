@@ -1,28 +1,95 @@
-import { menuData } from "../lib";
-import { useState } from "react";
+import { menuData, IMenuItem, TMenu, TMenuProps } from "../lib";
+import { UIEvent, useEffect, useRef, useState } from "react";
 import { CategoryNav } from ".";
 
-interface IMenuItem {
-  name: string;
-  description: string;
-  img: string;
-  category: "Donuts" | "Breakfast" | "Drinks" | "All";
-}
+export const Menu: React.FC = () => {
+  const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
+  const scrollHeightRef = useRef<HTMLDivElement>(null);
 
-type Menu = IMenuItem[];
+  // const [scrollDir, setScrollDir] = useState("scrolling up");
 
-type MenuProps = {
-  menuItem: IMenuItem;
-};
+  // let oldScrollY = 0;
 
-export const DonutList: React.FC = () => {
-  const [sortMenu, setSortMenu] = useState<Menu>(menuData);
-  console.log("fdfa");
+  const [scrollDir, setScrollDir] = useState("scrolling up");
+
+  // const controlDirection = () => {
+  //   if (window.scrollY > oldScrollY) {
+  //     setScrollDir("scrolling down");
+  //   } else {
+  //     setScrollDir("scrolling up");
+  //   }
+  //   oldScrollY = window.scrollY;
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", controlDirection);
+  //   return () => {
+  //     window.removeEventListener("scroll", controlDirection);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const threshold = 50;
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    // function throttle(func: any, interval: number) {
+    //   let lastCall = 0;
+    //   return function () {
+    //     const now = Date.now();
+    //     if (lastCall + interval < now) {
+    //       lastCall = now;
+    //       return func.apply(this, arguments);
+    //     }
+    //   };
+    // }
+
+    const updateScrollDir = () => {
+      const scrollY = window.scrollY;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      lastScrollY = scrollY > 0 ? scrollY : 50;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    console.log(scrollDir);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir]);
+
+  useEffect(() => {
+    if (scrollHeightRef.current) {
+      // scrollHeightRef.current.scrollTop = scrollHeightRef.current.scrollHeight;
+      console.log("fgdfsg");
+      console.log(scrollHeightRef.current?.scrollHeight);
+    }
+  }, [sortMenu]);
+
+  // const onScroll = (e: UIEvent<HTMLDivElement>) => {
+  //   console.log(scrollHeightRef.current?.scrollHeight);
+  //   console.log("e", e.currentTarget.scrollTop);
+  //   console.log("ffds");
+  //   if (scrollHeightRef.current?.scrollHeight)
+  //     if (scrollHeightRef.current?.scrollHeight > 60) console.log("onScroll");
+  // };
+
   const mapMenuItems = (menuItem: IMenuItem, index: number) => {
     return (
       <>
         {menuItem.category !== sortMenu[index - 1]?.category && (
-          <h2 className="w-full text-center" key={menuItem.category}>
+          <h2 className="w-full text-center py-4" key={menuItem.category}>
             {menuItem.category}
           </h2>
         )}
@@ -32,20 +99,23 @@ export const DonutList: React.FC = () => {
   };
 
   return (
-    <div
-      className="flex flex-wrap menu-fade"
-      // style={{ animation: sortMenu && "menu-fade 0.5s" }}
-    >
-      <CategoryNav setSortMenu={setSortMenu} />
-      {/* {sortMenu.map((menuItem: IMenuItem, index: number) => (
-        <MenuItemCard menuItem={menuItem} key={index}></MenuItemCard>
-      ))} */}
-      {sortMenu.map(mapMenuItems)}
-    </div>
+    <>
+      <CategoryNav setSortMenu={setSortMenu} scrollDir={scrollDir} />
+      <div
+        className="flex flex-wrap menu-fade"
+        ref={scrollHeightRef}
+        // onScroll={(e) => {
+        //   onScroll(e);
+        //   console.log("fsdf");
+        // }}
+      >
+        {sortMenu.map(mapMenuItems)}
+      </div>
+    </>
   );
 };
 
-const MenuItemCard = ({ menuItem }: MenuProps) => {
+const MenuItemCard = ({ menuItem }: TMenuProps) => {
   return (
     <div className="flex flex-col md:flex-row items-center w-full md:w-1/2 menu-fade">
       <img
