@@ -2,47 +2,18 @@ import { menuData, IMenuItem, TMenu, TMenuProps } from "../lib";
 import { UIEvent, useEffect, useRef, useState } from "react";
 import { CategoryNav } from ".";
 
-export const Menu: React.FC = () => {
+export const DonutList: React.FC = () => {
   const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
-
-  // const [scrollDir, setScrollDir] = useState("scrolling up");
-
-  // let oldScrollY = 0;
-
   const [scrollDir, setScrollDir] = useState("scrolling up");
 
-  // const controlDirection = () => {
-  //   if (window.scrollY > oldScrollY) {
-  //     setScrollDir("scrolling down");
-  //   } else {
-  //     setScrollDir("scrolling up");
-  //   }
-  //   oldScrollY = window.scrollY;
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", controlDirection);
-  //   return () => {
-  //     window.removeEventListener("scroll", controlDirection);
-  //   };
-  // }, []);
-
   useEffect(() => {
-    const threshold = 50;
+    console.log(window.scrollY);
+
+    // if (window.scrollY < 500) return;
+    const threshold = 75;
     let lastScrollY = window.scrollY;
     let ticking = false;
-
-    // function throttle(func: any, interval: number) {
-    //   let lastCall = 0;
-    //   return function () {
-    //     const now = Date.now();
-    //     if (lastCall + interval < now) {
-    //       lastCall = now;
-    //       return func.apply(this, arguments);
-    //     }
-    //   };
-    // }
 
     const updateScrollDir = () => {
       const scrollY = window.scrollY;
@@ -52,12 +23,12 @@ export const Menu: React.FC = () => {
         return;
       }
       setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
-      lastScrollY = scrollY > 0 ? scrollY : 50;
+      lastScrollY = scrollY > 0 ? scrollY : 75;
       ticking = false;
     };
 
     const onScroll = () => {
-      if (!ticking) {
+      if (!ticking && window.scrollY > 375) {
         window.requestAnimationFrame(updateScrollDir);
         ticking = true;
       }
@@ -77,14 +48,6 @@ export const Menu: React.FC = () => {
     }
   }, [sortMenu]);
 
-  // const onScroll = (e: UIEvent<HTMLDivElement>) => {
-  //   console.log(scrollHeightRef.current?.scrollHeight);
-  //   console.log("e", e.currentTarget.scrollTop);
-  //   console.log("ffds");
-  //   if (scrollHeightRef.current?.scrollHeight)
-  //     if (scrollHeightRef.current?.scrollHeight > 60) console.log("onScroll");
-  // };
-
   const mapMenuItems = (menuItem: IMenuItem, index: number) => {
     return (
       <>
@@ -99,19 +62,22 @@ export const Menu: React.FC = () => {
   };
 
   return (
-    <>
-      <CategoryNav setSortMenu={setSortMenu} scrollDir={scrollDir} />
-      <div
-        className="flex flex-wrap menu-fade"
-        ref={scrollHeightRef}
-        // onScroll={(e) => {
-        //   onScroll(e);
-        //   console.log("fsdf");
-        // }}
-      >
+    <div className="max-w-7xl mx-auto">
+      <div className="menu-banner h-64 md:h-96 relative">
+        <div className="h-full bg-black opacity-50"></div>
+        <span className="text-white opacity-100 text-4xl md:text-8x1 lg:text-9xl absolute inset-0 top-1/4 text-center">
+          Made Fresh Daily!
+        </span>
+      </div>
+      <CategoryNav
+        setSortMenu={setSortMenu}
+        scrollDir={scrollDir}
+        setScrollDir={setScrollDir}
+      />
+      <div className="flex flex-wrap menu-fade root" ref={scrollHeightRef}>
         {sortMenu.map(mapMenuItems)}
       </div>
-    </>
+    </div>
   );
 };
 
