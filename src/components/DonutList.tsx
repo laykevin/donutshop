@@ -1,5 +1,5 @@
 import { menuData, IMenuItem, TMenu, TMenuProps, SetMenuIndex } from "../lib";
-import { UIEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CategoryNav } from ".";
 
 export const DonutList = ({ setMenuIndex }: SetMenuIndex) => {

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { menuData, IMenuItem, SetSortMenu, TMenuItemCategory } from "../lib";
 
 enum EMenuFilterIndex {
