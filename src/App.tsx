@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { NavBar } from "./components";
 import { Route, Routes } from "react-router-dom";
-import { Menu, Home, About } from "./pages";
+import { Menu, Home, About, NotFound } from "./pages";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -13,6 +13,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="menu" element={<Menu />} />
           <Route path="about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>
