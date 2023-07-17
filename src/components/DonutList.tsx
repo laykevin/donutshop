@@ -99,10 +99,16 @@ export const Menu: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="max-w-7xl mx-auto">
+      <div className="menu-banner h-64 md:h-96 relative">
+        <div className="h-full bg-black opacity-50"></div>
+        <span className="text-white opacity-100 text-4xl md:text-8x1 lg:text-9xl absolute inset-0 top-1/4 text-center">
+          Made Fresh Daily!
+        </span>
+      </div>
       <CategoryNav setSortMenu={setSortMenu} scrollDir={scrollDir} />
       <div
-        className="flex flex-wrap menu-fade"
+        className="flex flex-wrap menu-fade root"
         ref={scrollHeightRef}
         // onScroll={(e) => {
         //   onScroll(e);
@@ -111,7 +117,7 @@ export const Menu: React.FC = () => {
       >
         {sortMenu.map(mapMenuItems)}
       </div>
-    </>
+    </div>
   );
 };
 
