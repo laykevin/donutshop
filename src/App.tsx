@@ -1,14 +1,20 @@
 import { useState } from "react";
 import "./App.css";
-import { Menu, NavBar } from "./components";
+import { NavBar } from "./components";
 import { Route, Routes } from "react-router-dom";
+import { Menu, Home, About } from "./pages";
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <NavBar />
-      <Menu />
+      <Routes>
+        <Route path="/" element={<NavBar />}>
+          <Route index element={<Home />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="about" element={<About />} />
+        </Route>
+      </Routes>
     </>
   );
 }

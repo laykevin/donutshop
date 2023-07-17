@@ -2,7 +2,7 @@ import { menuData, IMenuItem, TMenu, TMenuProps } from "../lib";
 import { UIEvent, useEffect, useRef, useState } from "react";
 import { CategoryNav } from ".";
 
-export const Menu: React.FC = () => {
+export const DonutList: React.FC = () => {
   const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
   const [scrollDir, setScrollDir] = useState("scrolling up");
