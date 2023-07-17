@@ -1,10 +1,18 @@
 import { useState, useRef, useEffect } from "react";
 import { menuData, IMenuItem, SetSortMenu, TMenuItemCategory } from "../lib";
 
+enum EMenuFilterIndex {
+  "Donuts" = 0,
+  "All" = 0,
+  "Breakfast" = 1,
+  "Drinks" = 2,
+}
+
 export const CategoryNav = ({
   setSortMenu,
   scrollDir,
   setScrollDir,
+  setMenuIndex,
 }: SetSortMenu) => {
   const [isActive, setIsActive] = useState<TMenuItemCategory>("All");
   const [isHovered, setIsHovered] = useState(false);
@@ -17,15 +25,17 @@ export const CategoryNav = ({
   ];
 
   const filterMenuByCategory = (category: TMenuItemCategory) => {
+    setMenuIndex(EMenuFilterIndex[category]);
     setIsActive(category === isActive ? "All" : category);
     setScrollDir("scrolling up");
-    category === "All" || category === isActive
-      ? setSortMenu(menuData)
-      : setSortMenu(
-          menuData.filter(
-            (menuItem: IMenuItem) => menuItem.category === category
-          )
-        );
+    if (category === "All" || category === isActive) {
+      setSortMenu(menuData);
+      setMenuIndex(0);
+    } else {
+      setSortMenu(
+        menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
+      );
+    }
   };
 
   const mapCategories = (category: TMenuItemCategory, index: number) => {
