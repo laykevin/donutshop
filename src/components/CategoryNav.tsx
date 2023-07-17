@@ -5,7 +5,7 @@ enum EMenuFilterIndex {
   "Donuts" = 0,
   "All" = 0,
   "Breakfast" = 1,
-  "Drinks" = 2,
+  "Coffee & Drinks" = 2,
 }
 
 export const CategoryNav = ({
@@ -20,7 +20,7 @@ export const CategoryNav = ({
   const categories: TMenuItemCategory[] = [
     "Donuts",
     "Breakfast",
-    "Drinks",
+    "Coffee & Drinks",
     "All",
   ];
 

@@ -2,7 +2,7 @@ export interface IMenuItem {
   name: string;
   description: string;
   img: string;
-  category: "Donuts" | "Breakfast" | "Drinks" | "All";
+  category: "Donuts" | "Breakfast" | "Coffee & Drinks" | "All";
 }
 
 export type TMenu = IMenuItem[];
@@ -22,7 +22,11 @@ export interface SetMenuIndex {
   setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export type TMenuItemCategory = "Donuts" | "Breakfast" | "Drinks" | "All";
+export type TMenuItemCategory =
+  | "Donuts"
+  | "Breakfast"
+  | "Coffee & Drinks"
+  | "All";
 
 export type BannerProps = {
   imgPath: string;
