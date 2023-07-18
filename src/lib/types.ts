@@ -7,19 +7,12 @@ export interface IMenuItem {
 
 export type TMenu = IMenuItem[];
 
-export interface SetSortMenu {
-  setSortMenu: React.Dispatch<React.SetStateAction<TMenu>>;
-  scrollDir: string;
-  setScrollDir: React.Dispatch<React.SetStateAction<string>>;
-  setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
-}
-
 export type TMenuProps = {
   menuItem: IMenuItem;
 };
 
-export interface SetMenuIndex {
-  setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
+export interface setCategory {
+  setCategory: React.Dispatch<React.SetStateAction<TMenuItemCategory>>;
 }
 
 export type TMenuItemCategory =
@@ -27,6 +20,13 @@ export type TMenuItemCategory =
   | "Breakfast"
   | "Coffee & Drinks"
   | "All";
+
+export interface SetSortMenu {
+  setSortMenu: React.Dispatch<React.SetStateAction<TMenu>>;
+  scrollDir: string;
+  setScrollDir: React.Dispatch<React.SetStateAction<string>>;
+  setCategory: React.Dispatch<React.SetStateAction<TMenuItemCategory>>;
+}
 
 export type BannerProps = {
   imgPath: string;

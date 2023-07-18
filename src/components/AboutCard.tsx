@@ -14,7 +14,7 @@ export const AboutCard = ({
   return (
     <div
       style={{
-        backgroundColor: rowReverse ? "#f4f4f4" : "#ffffff",
+        backgroundColor: rowReverse ? "#ffffff" : "#f4f4f4",
         padding: "2rem 0",
       }}
     >
@@ -33,7 +33,7 @@ export const AboutCard = ({
         <div className="flex flex-col justify-around items-center self-stretch">
           <h3 className="text-center text-3xl py-2 text-rose-500">{title}</h3>
           <p className="text-center">{desc}</p>
-          <button className="w-1/3 py-4 ease-in-out duration-300 bg-red-200 rounded drop-shadow-xl">
+          <button className="w-1/3 py-4 ease-in-out duration-300 bg-red-100 hover:bg-red-200 rounded drop-shadow-xl">
             Check out our Donuts!
           </button>
         </div>

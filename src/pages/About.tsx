@@ -11,9 +11,25 @@ export const About = () => {
         }
         textContent={"About Change Me!"}
       ></Banner>
-      <h1 className="text-center py-4 bg-rose-100 text-rose-800 max-w-7xl m-auto">
-        What We Do
-      </h1>
+      <div
+        className="pt-4 relative"
+        style={{
+          backgroundColor: "#f4f4f4",
+        }}
+      >
+        <h1 className="text-center py-4 text-rose-800 max-w-2xl m-auto rounded-l ">
+          <span
+            className="shadow-2xl rounded-l shadow-rose-200 px-4 py-2"
+            style={{
+              background:
+                "linear-gradient(to bottom, #f4f4f4, rgb(255 228 230)",
+            }}
+          >
+            Our Mission
+          </span>
+        </h1>
+        <div className="bowtie drop-shadow-xl"></div>
+      </div>
       <AboutCard
         imgPath={
           "https://www.allrecipes.com/thmb/cBPSZNvizIzy9X_NMIRvvqq6lIQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/45921-crispy-and-creamy-doughnuts-ddmfs-step-5-560-3x4-ad8a6d3f24e84ef388a17deca0fc3c8a.jpg"

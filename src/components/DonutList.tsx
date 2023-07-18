@@ -1,8 +1,8 @@
-import { menuData, IMenuItem, TMenu, TMenuProps, SetMenuIndex } from "../lib";
+import { menuData, IMenuItem, TMenu, TMenuProps, setCategory } from "../lib";
 import { useEffect, useRef, useState } from "react";
 import { CategoryNav } from ".";
 
-export const DonutList = ({ setMenuIndex }: SetMenuIndex) => {
+export const DonutList = ({ setCategory }: setCategory) => {
   const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
   const [scrollDir, setScrollDir] = useState("scrolling up");
@@ -73,7 +73,7 @@ export const DonutList = ({ setMenuIndex }: SetMenuIndex) => {
         setSortMenu={setSortMenu}
         scrollDir={scrollDir}
         setScrollDir={setScrollDir}
-        setMenuIndex={setMenuIndex}
+        setCategory={setCategory}
       />
       <div className="flex flex-wrap menu-fade root" ref={scrollHeightRef}>
         {sortMenu.map(mapMenuItems)}

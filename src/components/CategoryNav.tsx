@@ -1,18 +1,11 @@
 import { useState } from "react";
 import { menuData, IMenuItem, SetSortMenu, TMenuItemCategory } from "../lib";
 
-enum EMenuFilterIndex {
-  "Donuts" = 0,
-  "All" = 0,
-  "Breakfast" = 1,
-  "Coffee & Drinks" = 2,
-}
-
 export const CategoryNav = ({
   setSortMenu,
   scrollDir,
   setScrollDir,
-  setMenuIndex,
+  setCategory,
 }: SetSortMenu) => {
   const [isActive, setIsActive] = useState<TMenuItemCategory>("All");
   const [isHovered, setIsHovered] = useState(false);
@@ -25,12 +18,12 @@ export const CategoryNav = ({
   ];
 
   const filterMenuByCategory = (category: TMenuItemCategory) => {
-    setMenuIndex(EMenuFilterIndex[category]);
+    setCategory(category);
     setIsActive(category === isActive ? "All" : category);
     setScrollDir("scrolling up");
     if (category === "All" || category === isActive) {
       setSortMenu(menuData);
-      setMenuIndex(0);
+      setCategory("All");
     } else {
       setSortMenu(
         menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
@@ -65,22 +58,6 @@ export const CategoryNav = ({
       </button>
     );
   };
-
-  // const mapCategories = (category: TMenuItemCategory, index: number) => {
-  //   return (
-  //     <button
-  //       key={index}
-  //       className={
-  //         isActive === category
-  //           ? "w-1/4 text-red-400 bg-red-200 ease-in-out duration-300 h-full"
-  //           : "w-1/4 ease-in-out duration-300 h-full"
-  //       }
-  //       onClick={() => filterMenuByCategory(category)}
-  //     >
-  //       {category}
-  //     </button>
-  //   );
-  // };
 
   return (
     <div
