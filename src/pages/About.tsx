@@ -11,6 +11,9 @@ export const About = () => {
         }
         textContent={"About Change Me!"}
       ></Banner>
+      <h1 className="text-center py-4 bg-rose-100 text-rose-800 max-w-7xl m-auto">
+        What We Do
+      </h1>
       <AboutCard
         imgPath={
           "https://www.allrecipes.com/thmb/cBPSZNvizIzy9X_NMIRvvqq6lIQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/45921-crispy-and-creamy-doughnuts-ddmfs-step-5-560-3x4-ad8a6d3f24e84ef388a17deca0fc3c8a.jpg"
@@ -34,7 +37,7 @@ export const About = () => {
         title={"Lucky Lotto!"}
         desc={ipsumText}
         rowReverse={false}
-      />
+      ></AboutCard>
     </>
   );
 };
