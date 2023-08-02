@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import { Footer } from ".";
 
 export const NavBar = () => {
   return (
@@ -12,6 +13,7 @@ export const NavBar = () => {
         </div>
       </div>
       <Outlet />
+      <Footer />
     </>
   );
 };

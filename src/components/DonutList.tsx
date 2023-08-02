@@ -52,7 +52,10 @@ export const DonutList = ({ setCategory }: setCategory) => {
     return (
       <>
         {menuItem.category !== sortMenu[index - 1]?.category && (
-          <h2 className="w-full text-center py-4" key={menuItem.category}>
+          <h2
+            className="w-full text-center py-4 os-font"
+            key={menuItem.category}
+          >
             {menuItem.category}
           </h2>
         )}
