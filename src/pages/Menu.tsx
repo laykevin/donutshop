@@ -1,9 +1,36 @@
 import { DonutList, Banner } from "../components";
-import { useState } from "react";
-import { TMenuItemCategory } from "../lib";
+import { useEffect, useState } from "react";
+import { TMenuItemCategory, menuData, TMenu, IMenuItem } from "../lib";
+import { useCategory } from "../components";
 
 export const Menu = () => {
-  const [category, setCategory] = useState<TMenuItemCategory>("All");
+  const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
+  const [isActive, setIsActive] = useState<TMenuItemCategory>("All");
+
+  const [category, setCategory] = useCategory();
+
+  useEffect(() => {
+    if (category === "All") setSortMenu(menuData);
+    else {
+      setSortMenu(
+        menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
+      );
+    }
+  }, [setSortMenu, category]);
+
+  const filterMenuByCategory = (category: TMenuItemCategory) => {
+    setCategory(category);
+    setIsActive(category === isActive ? "All" : category);
+    // setScrollDir("scrolling up");
+    if (category === "All" || category === isActive) {
+      setSortMenu(menuData);
+      setCategory("All");
+    } else {
+      setSortMenu(
+        menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
+      );
+    }
+  };
 
   const menuBannerData = {
     Donuts: {
@@ -34,7 +61,11 @@ export const Menu = () => {
         imgPath={menuBannerData[category].imgPath}
         textContent={menuBannerData[category].textContent}
       ></Banner>
-      <DonutList setCategory={setCategory}></DonutList>
+      <DonutList
+        setCategory={setCategory}
+        setSortMenu={setSortMenu}
+        sortMenu={sortMenu}
+      ></DonutList>
     </>
   );
 };
