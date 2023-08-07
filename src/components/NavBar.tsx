@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet, useOutletContext } from "react-router-dom";
 import { Footer } from ".";
-import { IMenuContext, MenuContext, TMenuItemCategory } from "../lib";
+import { TMenuItemCategory } from "../lib";
 
 export const NavBar = () => {
   const [category, setCategory] = useState<TMenuItemCategory>("All");

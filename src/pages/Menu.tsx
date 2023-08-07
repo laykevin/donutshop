@@ -1,11 +1,10 @@
 import { DonutList, Banner } from "../components";
 import { useEffect, useState, useRef } from "react";
-import { TMenuItemCategory, menuData, TMenu, IMenuItem } from "../lib";
+import { menuData, TMenu, IMenuItem } from "../lib";
 import { useCategory } from "../components";
 
 export const Menu = () => {
   const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
-  const [isActive, setIsActive] = useState<TMenuItemCategory>("All");
   const categoryNavRef = useRef<HTMLDivElement | null>(null);
 
   const [category, setCategory] = useCategory();
@@ -30,20 +29,6 @@ export const Menu = () => {
     if (categoryNavRef && window.scrollY > 448)
       scrollHandler(categoryNavRef), [category];
   });
-
-  // const filterMenuByCategory = (category: TMenuItemCategory) => {
-  //   setCategory(category);
-  //   setIsActive(category === isActive ? "All" : category);
-  //   // setScrollDir("scrolling up");
-  //   if (category === "All" || category === isActive) {
-  //     setSortMenu(menuData);
-  //     setCategory("All");
-  //   } else {
-  //     setSortMenu(
-  //       menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
-  //     );
-  //   }
-  // };
 
   const menuBannerData = {
     Donuts: {

@@ -1,6 +1,6 @@
-import { menuData, IMenuItem, TMenu, TMenuProps, DonutListProps } from "../lib";
+import { IMenuItem, TMenuProps, DonutListProps } from "../lib";
 import { useEffect, useRef, useState } from "react";
-import { CategoryNav, useCategory } from ".";
+import { CategoryNav } from ".";
 
 export const DonutList = ({
   setCategory,
@@ -10,18 +10,6 @@ export const DonutList = ({
   // const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
   const [scrollDir, setScrollDir] = useState("scrolling up");
-  // const categoryNavRef = useRef<HTMLDivElement | null>(null);
-  const category = useCategory();
-
-  // useEffect(() => {
-  //   const scrollHandler = (
-  //     elemRef: React.MutableRefObject<HTMLDivElement | null> | null
-  //   ) => {
-  //     console.log(elemRef?.current);
-  //     if (elemRef?.current) window.scrollTo({ top: elemRef.current.offsetTop });
-  //   };
-  //   scrollHandler(categoryNavRef);
-  // }, [category]);
 
   useEffect(() => {
     console.log(window.scrollY);
@@ -82,12 +70,6 @@ export const DonutList = ({
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* <div className="menu-banner h-64 md:h-96 relative">
-        <div className="h-full bg-black opacity-50"></div>
-        <span className="text-white opacity-100 text-4xl md:text-8x1 lg:text-9xl absolute inset-0 top-1/4 text-center">
-          Made Fresh Daily!
-        </span>
-      </div> */}
       <CategoryNav
         setSortMenu={setSortMenu}
         scrollDir={scrollDir}
