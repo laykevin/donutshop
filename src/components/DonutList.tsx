@@ -1,6 +1,6 @@
 import { menuData, IMenuItem, TMenu, TMenuProps, DonutListProps } from "../lib";
 import { useEffect, useRef, useState } from "react";
-import { CategoryNav } from ".";
+import { CategoryNav, useCategory } from ".";
 
 export const DonutList = ({
   setCategory,
@@ -10,12 +10,24 @@ export const DonutList = ({
   // const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
   const [scrollDir, setScrollDir] = useState("scrolling up");
+  // const categoryNavRef = useRef<HTMLDivElement | null>(null);
+  const category = useCategory();
+
+  // useEffect(() => {
+  //   const scrollHandler = (
+  //     elemRef: React.MutableRefObject<HTMLDivElement | null> | null
+  //   ) => {
+  //     console.log(elemRef?.current);
+  //     if (elemRef?.current) window.scrollTo({ top: elemRef.current.offsetTop });
+  //   };
+  //   scrollHandler(categoryNavRef);
+  // }, [category]);
 
   useEffect(() => {
     console.log(window.scrollY);
 
     // if (window.scrollY < 500) return;
-    const threshold = 75;
+    const threshold = 60;
     let lastScrollY = window.scrollY;
     let ticking = false;
 
@@ -32,7 +44,7 @@ export const DonutList = ({
     };
 
     const onScroll = () => {
-      if (!ticking && window.scrollY > 375) {
+      if (!ticking && window.scrollY > 448) {
         window.requestAnimationFrame(updateScrollDir);
         ticking = true;
       }
@@ -82,7 +94,11 @@ export const DonutList = ({
         setScrollDir={setScrollDir}
         setCategory={setCategory}
       />
-      <div className="flex flex-wrap menu-fade root" ref={scrollHeightRef}>
+      <div
+        className="flex flex-wrap menu-fade root"
+        style={{ minHeight: "50vh" }}
+        ref={scrollHeightRef}
+      >
         {sortMenu.map(mapMenuItems)}
       </div>
     </div>

@@ -1,13 +1,21 @@
 import { DonutList, Banner } from "../components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { TMenuItemCategory, menuData, TMenu, IMenuItem } from "../lib";
 import { useCategory } from "../components";
 
 export const Menu = () => {
   const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const [isActive, setIsActive] = useState<TMenuItemCategory>("All");
+  const categoryNavRef = useRef<HTMLDivElement | null>(null);
 
   const [category, setCategory] = useCategory();
+
+  const scrollHandler = (
+    elemRef: React.MutableRefObject<HTMLDivElement | null> | null
+  ) => {
+    console.log(elemRef?.current?.offsetTop);
+    if (elemRef?.current) window.scrollTo({ top: elemRef.current.offsetTop });
+  };
 
   useEffect(() => {
     if (category === "All") setSortMenu(menuData);
@@ -18,19 +26,24 @@ export const Menu = () => {
     }
   }, [setSortMenu, category]);
 
-  const filterMenuByCategory = (category: TMenuItemCategory) => {
-    setCategory(category);
-    setIsActive(category === isActive ? "All" : category);
-    // setScrollDir("scrolling up");
-    if (category === "All" || category === isActive) {
-      setSortMenu(menuData);
-      setCategory("All");
-    } else {
-      setSortMenu(
-        menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
-      );
-    }
-  };
+  useEffect(() => {
+    if (categoryNavRef && window.scrollY > 448)
+      scrollHandler(categoryNavRef), [category];
+  });
+
+  // const filterMenuByCategory = (category: TMenuItemCategory) => {
+  //   setCategory(category);
+  //   setIsActive(category === isActive ? "All" : category);
+  //   // setScrollDir("scrolling up");
+  //   if (category === "All" || category === isActive) {
+  //     setSortMenu(menuData);
+  //     setCategory("All");
+  //   } else {
+  //     setSortMenu(
+  //       menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
+  //     );
+  //   }
+  // };
 
   const menuBannerData = {
     Donuts: {
@@ -61,11 +74,13 @@ export const Menu = () => {
         imgPath={menuBannerData[category].imgPath}
         textContent={menuBannerData[category].textContent}
       ></Banner>
-      <DonutList
-        setCategory={setCategory}
-        setSortMenu={setSortMenu}
-        sortMenu={sortMenu}
-      ></DonutList>
+      <div ref={categoryNavRef}>
+        <DonutList
+          setCategory={setCategory}
+          setSortMenu={setSortMenu}
+          sortMenu={sortMenu}
+        ></DonutList>
+      </div>
     </>
   );
 };
