@@ -32,7 +32,7 @@ export const Footer = ({ setCategory }: FooterProps) => {
   };
 
   return (
-    <div className="bg-amber-950 text-white grid md:grid-cols-6 gap-4 py-5 mx-auto">
+    <div className="bg-amber-950 text-white grid grid-cols-2 md:grid-cols-6 gap-4 py-10 mx-auto">
       <div
         className="col-span-3 flex flex-col mx-auto text-xl"
         style={{ fontFamily: "Oleo Script", fontSize: "2rem" }}
@@ -42,7 +42,7 @@ export const Footer = ({ setCategory }: FooterProps) => {
       <div className="flex flex-col m-auto">
         {categoryArray.map(mapMenuLinks)}
       </div>
-      <div className=" col-span-2 flex flex-col mx-auto">
+      <div className=" md:col-span-2 flex flex-col mx-auto">
         <div
           className="text-center text-xl"
           style={{ fontFamily: "Oleo Script", fontSize: "2rem" }}
