@@ -88,3 +88,8 @@
   border-bottom: 10px solid transparent;
   border-radius: 3px;
 }
+
+.os-font {
+  font-family: "Oleo Script";
+  font-size: 2rem;
+}

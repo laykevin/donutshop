@@ -1,9 +1,34 @@
 import { DonutList, Banner } from "../components";
-import { useState } from "react";
-import { TMenuItemCategory } from "../lib";
+import { useEffect, useState, useRef } from "react";
+import { menuData, TMenu, IMenuItem } from "../lib";
+import { useCategory } from "../components";
 
 export const Menu = () => {
-  const [category, setCategory] = useState<TMenuItemCategory>("All");
+  const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
+  const categoryNavRef = useRef<HTMLDivElement | null>(null);
+
+  const [category, setCategory] = useCategory();
+
+  const scrollHandler = (
+    elemRef: React.MutableRefObject<HTMLDivElement | null> | null
+  ) => {
+    console.log(elemRef?.current?.offsetTop);
+    if (elemRef?.current) window.scrollTo({ top: elemRef.current.offsetTop });
+  };
+
+  useEffect(() => {
+    if (category === "All") setSortMenu(menuData);
+    else {
+      setSortMenu(
+        menuData.filter((menuItem: IMenuItem) => menuItem.category === category)
+      );
+    }
+  }, [setSortMenu, category]);
+
+  useEffect(() => {
+    if (categoryNavRef && window.scrollY > 448)
+      scrollHandler(categoryNavRef), [category];
+  });
 
   const menuBannerData = {
     Donuts: {
@@ -34,7 +59,13 @@ export const Menu = () => {
         imgPath={menuBannerData[category].imgPath}
         textContent={menuBannerData[category].textContent}
       ></Banner>
-      <DonutList setCategory={setCategory}></DonutList>
+      <div ref={categoryNavRef}>
+        <DonutList
+          setCategory={setCategory}
+          setSortMenu={setSortMenu}
+          sortMenu={sortMenu}
+        ></DonutList>
+      </div>
     </>
   );
 };

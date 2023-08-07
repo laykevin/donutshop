@@ -11,8 +11,10 @@ export type TMenuProps = {
   menuItem: IMenuItem;
 };
 
-export interface setCategory {
+export interface DonutListProps {
   setCategory: React.Dispatch<React.SetStateAction<TMenuItemCategory>>;
+  setSortMenu: React.Dispatch<React.SetStateAction<TMenu>>;
+  sortMenu: TMenu;
 }
 
 export type TMenuItemCategory =
@@ -31,4 +33,19 @@ export interface SetSortMenu {
 export type BannerProps = {
   imgPath: string;
   textContent: string;
+};
+
+export interface IMenuContext {
+  category: TMenuItemCategory;
+  setCategory: React.Dispatch<React.SetStateAction<TMenuItemCategory>>;
+}
+
+export type TMenuContext =
+  | TMenuItemCategory
+  | React.Dispatch<React.SetStateAction<TMenuItemCategory>>
+  | IMenuContext
+  | null;
+
+export type FooterProps = {
+  setCategory: React.Dispatch<React.SetStateAction<TMenuItemCategory>>;
 };

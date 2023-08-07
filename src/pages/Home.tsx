@@ -52,7 +52,7 @@ const HomeCard = () => {
 
 const ThreeImagesCard = () => {
   return (
-    <div className="flex justify-center gap-5 bg-white py-5">
+    <div className="flex flex-wrap justify-center gap-5 bg-white py-5">
       <img src="/src/assets/DonutsTymeDonut.png" alt="" />
       <img src="/src/assets/DonutsTymeDonut.png" alt="" />
       <img src="/src/assets/DonutsTymeDonut.png" alt="" />

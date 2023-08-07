@@ -1,9 +1,13 @@
-import { menuData, IMenuItem, TMenu, TMenuProps, setCategory } from "../lib";
+import { IMenuItem, TMenuProps, DonutListProps } from "../lib";
 import { useEffect, useRef, useState } from "react";
 import { CategoryNav } from ".";
 
-export const DonutList = ({ setCategory }: setCategory) => {
-  const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
+export const DonutList = ({
+  setCategory,
+  setSortMenu,
+  sortMenu,
+}: DonutListProps) => {
+  // const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
   const [scrollDir, setScrollDir] = useState("scrolling up");
 
@@ -11,7 +15,7 @@ export const DonutList = ({ setCategory }: setCategory) => {
     console.log(window.scrollY);
 
     // if (window.scrollY < 500) return;
-    const threshold = 75;
+    const threshold = 60;
     let lastScrollY = window.scrollY;
     let ticking = false;
 
@@ -28,7 +32,7 @@ export const DonutList = ({ setCategory }: setCategory) => {
     };
 
     const onScroll = () => {
-      if (!ticking && window.scrollY > 375) {
+      if (!ticking && window.scrollY > 448) {
         window.requestAnimationFrame(updateScrollDir);
         ticking = true;
       }
@@ -52,7 +56,10 @@ export const DonutList = ({ setCategory }: setCategory) => {
     return (
       <>
         {menuItem.category !== sortMenu[index - 1]?.category && (
-          <h2 className="w-full text-center py-4" key={menuItem.category}>
+          <h2
+            className="w-full text-center py-4 os-font"
+            key={menuItem.category}
+          >
             {menuItem.category}
           </h2>
         )}
@@ -63,19 +70,17 @@ export const DonutList = ({ setCategory }: setCategory) => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* <div className="menu-banner h-64 md:h-96 relative">
-        <div className="h-full bg-black opacity-50"></div>
-        <span className="text-white opacity-100 text-4xl md:text-8x1 lg:text-9xl absolute inset-0 top-1/4 text-center">
-          Made Fresh Daily!
-        </span>
-      </div> */}
       <CategoryNav
         setSortMenu={setSortMenu}
         scrollDir={scrollDir}
         setScrollDir={setScrollDir}
         setCategory={setCategory}
       />
-      <div className="flex flex-wrap menu-fade root" ref={scrollHeightRef}>
+      <div
+        className="flex flex-wrap menu-fade root"
+        style={{ minHeight: "50vh" }}
+        ref={scrollHeightRef}
+      >
         {sortMenu.map(mapMenuItems)}
       </div>
     </div>
