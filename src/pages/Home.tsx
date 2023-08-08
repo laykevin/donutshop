@@ -1,4 +1,6 @@
-import { Banner } from "../components";
+import { Banner, useCategory } from "../components";
+import { Link } from "react-router-dom";
+import { TMenuItemCategory } from "../lib";
 
 export const Home = () => {
   return (
@@ -51,11 +53,30 @@ const HomeCard = () => {
 };
 
 const ThreeImagesCard = () => {
+  const [, setCategory] = useCategory();
+  const pictureCategories: TMenuItemCategory[] = [
+    "Coffee & Drinks",
+    "Donuts",
+    "Breakfast",
+  ];
+
+  const mapPictures = (category: TMenuItemCategory, index: number) => {
+    return (
+      <Link to={"/menu"} key={index} onClick={() => setCategory(category)}>
+        <div className="relative bg-blue-200">
+          <img src={`/src/assets/DonutsTyme${category}.png`} alt={category} />
+          <div className="absolute inset-0 hover:bg-black/70 opacity-0 hover:opacity-100  ease-in-out duration-300 h-full w-full flex flex-col items-center justify-center text-white os-font">
+            <img src={`/src/assets/DonutsTyme${category}Graphic.png`} alt="" />
+            <span>{category}</span>
+          </div>
+        </div>
+      </Link>
+    );
+  };
+
   return (
     <div className="flex flex-wrap justify-center gap-5 bg-white py-5">
-      <img src="/src/assets/DonutsTymeDonut.png" alt="" />
-      <img src="/src/assets/DonutsTymeDonut.png" alt="" />
-      <img src="/src/assets/DonutsTymeDonut.png" alt="" />
+      {pictureCategories.map(mapPictures)}
     </div>
   );
 };
