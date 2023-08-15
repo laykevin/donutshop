@@ -49,7 +49,9 @@ export const Footer = ({ setCategory }: FooterProps) => {
         >
           Located
         </div>
-        <div>10320 Arlington Ave, Riverside, CA 92505</div>
+        <a href="https://goo.gl/maps/JRQGtAFHyJjEAFai6" target="_blank">
+          📍 10320 Arlington Ave, Riverside, CA 92505
+        </a>
         <div>☎️ (951) 351-1222</div>
       </div>
     </div>

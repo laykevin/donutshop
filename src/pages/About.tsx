@@ -1,6 +1,8 @@
-import { Banner, AboutCard } from "../components";
+import { Banner, AboutCard, useCategory } from "../components";
+import { Link } from "react-router-dom";
 
 export const About = () => {
+  const [category, setCategory] = useCategory();
   const ipsumText =
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut molestias voluptas temporibus omnis enim facilis perspiciatis quis doloremque, neque error voluptatum, expedita amet excepturi quisquam cum iste id quos minus.";
   return (
@@ -14,7 +16,7 @@ export const About = () => {
       <div
         className="pt-4 relative"
         style={{
-          backgroundColor: "#f4f4f4",
+          backgroundColor: "#FFEADD",
         }}
       >
         <h1 className="text-center py-4 text-rose-800 max-w-2xl m-auto rounded-l ">
@@ -23,6 +25,9 @@ export const About = () => {
             style={{
               background:
                 "linear-gradient(to bottom, #f4f4f4, rgb(255 228 230)",
+              fontFamily: "Amatic SC",
+              fontWeight: "bold",
+              fontSize: "6rem",
             }}
           >
             Our Mission
@@ -31,13 +36,24 @@ export const About = () => {
         <div className="bowtie drop-shadow-xl"></div>
       </div>
       <AboutCard
-        imgPath={
-          "https://www.allrecipes.com/thmb/cBPSZNvizIzy9X_NMIRvvqq6lIQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/45921-crispy-and-creamy-doughnuts-ddmfs-step-5-560-3x4-ad8a6d3f24e84ef388a17deca0fc3c8a.jpg"
-        }
+        imgPath={"/src/assets/DonutsTymeAboutDonut.png"}
         title={"Fresh Daily!"}
         desc={ipsumText}
         rowReverse={false}
-      />
+      >
+        <Link to={"/menu"}>
+          <button
+            className="w-full p-4 ease-in-out duration-300 bg-red-100 hover:bg-red-200 rounded-full drop-shadow-xl text-white"
+            style={{
+              backgroundColor: "#FF6666",
+              fontFamily: "Lato",
+            }}
+            onClick={() => setCategory("Donuts")}
+          >
+            Check out our Donuts!
+          </button>
+        </Link>
+      </AboutCard>
       <AboutCard
         imgPath={
           "https://www.wecravecoffee.com/wp-content/uploads/2021/03/How-Many-Coffee-Beans-Per-Cup.jpg"
