@@ -1,8 +1,6 @@
-import { Banner, AboutCard, useCategory } from "../components";
-import { Link } from "react-router-dom";
+import { Banner, AboutCard, ButtonLink } from "../components";
 
 export const About = () => {
-  const [category, setCategory] = useCategory();
   const ipsumText =
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut molestias voluptas temporibus omnis enim facilis perspiciatis quis doloremque, neque error voluptatum, expedita amet excepturi quisquam cum iste id quos minus.";
   return (
@@ -41,18 +39,7 @@ export const About = () => {
         desc={ipsumText}
         rowReverse={false}
       >
-        <Link to={"/menu"}>
-          <button
-            className="w-full p-4 ease-in-out duration-300 bg-red-100 hover:bg-red-200 rounded-full drop-shadow-xl text-white"
-            style={{
-              backgroundColor: "#FF6666",
-              fontFamily: "Lato",
-            }}
-            onClick={() => setCategory("Donuts")}
-          >
-            Check out our Donuts!
-          </button>
-        </Link>
+        <ButtonLink menuCategory="Donuts" />
       </AboutCard>
       <AboutCard
         imgPath={
@@ -61,7 +48,9 @@ export const About = () => {
         title={"Fresh Brewed Daily!"}
         desc={ipsumText}
         rowReverse={true}
-      />
+      >
+        <ButtonLink menuCategory={"Coffee & Drinks"} />
+      </AboutCard>
       <AboutCard
         imgPath={
           "https://media.nbcbayarea.com/2022/09/tlmd-mega-millions.jpg?quality=85&strip=all&resize=1200%2C675"
