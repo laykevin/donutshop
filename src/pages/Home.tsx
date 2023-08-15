@@ -1,4 +1,4 @@
-import { Banner, useCategory } from "../components";
+import { Banner, ButtonLink, useCategory } from "../components";
 import { Link } from "react-router-dom";
 import { TMenuItemCategory } from "../lib";
 
@@ -62,17 +62,19 @@ const ThreeImagesCard = () => {
 
   const mapPictures = (category: TMenuItemCategory, index: number) => {
     return (
-      <Link to={"/menu"} key={index} onClick={() => setCategory(category)}>
-        <div className="relative bg-red-200">
+      <div className="relative bg-red-200">
+        <Link to={"/menu"} key={index} onClick={() => setCategory(category)}>
           {/* <img src={`/src/assets/DonutsTyme${category}.png`} alt={category} /> */}
           <img src={`/src/assets/DonutsTymeDonuts.png`} alt={category} />
-
           <div className="absolute inset-0 hover:bg-black/70 opacity-0 hover:opacity-100  ease-in-out duration-300 h-full w-full flex flex-col items-center justify-center text-white os-font">
             <img src={`/src/assets/DonutsTyme${category}Graphic.png`} alt="" />
             <span>{category}</span>
           </div>
+        </Link>
+        <div className="absolute inset-0 h-full w-full flex items-end py-12 justify-center sm:hidden">
+          <ButtonLink menuCategory={category} />
         </div>
-      </Link>
+      </div>
     );
   };
 
