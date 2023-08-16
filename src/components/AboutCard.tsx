@@ -3,6 +3,7 @@ type TAboutCardProps = {
   title: string;
   desc: string;
   rowReverse: boolean;
+  children?: React.ReactNode;
 };
 
 export const AboutCard = ({
@@ -10,11 +11,12 @@ export const AboutCard = ({
   title,
   desc,
   rowReverse,
+  children,
 }: TAboutCardProps) => {
   return (
     <div
       style={{
-        backgroundColor: rowReverse ? "#ffffff" : "#f4f4f4",
+        backgroundColor: rowReverse ? "#ffffff" : "#FFEADD",
         padding: "2rem 0",
       }}
     >
@@ -31,11 +33,19 @@ export const AboutCard = ({
           alt=""
         />
         <div className="flex flex-col justify-around items-center self-stretch">
-          <h3 className="text-center text-3xl py-2 text-rose-500">{title}</h3>
-          <p className="text-center">{desc}</p>
-          <button className="w-1/3 py-4 ease-in-out duration-300 bg-red-100 hover:bg-red-200 rounded drop-shadow-xl">
-            Check out our Donuts!
-          </button>
+          <h3
+            className="text-center text-3xl py-2"
+            style={{ color: "#FF6666" }}
+          >
+            {title}
+          </h3>
+          <p
+            className="text-center"
+            style={{ fontFamily: "Handlee", fontSize: "1.5rem" }}
+          >
+            {desc}
+          </p>
+          {children}
         </div>
       </div>
     </div>

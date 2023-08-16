@@ -1,4 +1,4 @@
-import { Banner, AboutCard } from "../components";
+import { Banner, AboutCard, ButtonLink } from "../components";
 
 export const About = () => {
   const ipsumText =
@@ -14,7 +14,7 @@ export const About = () => {
       <div
         className="pt-4 relative"
         style={{
-          backgroundColor: "#f4f4f4",
+          backgroundColor: "#FFEADD",
         }}
       >
         <h1 className="text-center py-4 text-rose-800 max-w-2xl m-auto rounded-l ">
@@ -23,6 +23,9 @@ export const About = () => {
             style={{
               background:
                 "linear-gradient(to bottom, #f4f4f4, rgb(255 228 230)",
+              fontFamily: "Amatic SC",
+              fontWeight: "bold",
+              fontSize: "6rem",
             }}
           >
             Our Mission
@@ -31,13 +34,13 @@ export const About = () => {
         <div className="bowtie drop-shadow-xl"></div>
       </div>
       <AboutCard
-        imgPath={
-          "https://www.allrecipes.com/thmb/cBPSZNvizIzy9X_NMIRvvqq6lIQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/45921-crispy-and-creamy-doughnuts-ddmfs-step-5-560-3x4-ad8a6d3f24e84ef388a17deca0fc3c8a.jpg"
-        }
+        imgPath={"/src/assets/DonutsTymeAboutDonut.png"}
         title={"Fresh Daily!"}
         desc={ipsumText}
         rowReverse={false}
-      />
+      >
+        <ButtonLink menuCategory="Donuts" />
+      </AboutCard>
       <AboutCard
         imgPath={
           "https://www.wecravecoffee.com/wp-content/uploads/2021/03/How-Many-Coffee-Beans-Per-Cup.jpg"
@@ -45,7 +48,9 @@ export const About = () => {
         title={"Fresh Brewed Daily!"}
         desc={ipsumText}
         rowReverse={true}
-      />
+      >
+        <ButtonLink menuCategory={"Coffee & Drinks"} />
+      </AboutCard>
       <AboutCard
         imgPath={
           "https://media.nbcbayarea.com/2022/09/tlmd-mega-millions.jpg?quality=85&strip=all&resize=1200%2C675"
