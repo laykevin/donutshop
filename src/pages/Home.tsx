@@ -1,4 +1,4 @@
-import { Banner, ButtonLink, useCategory } from "../components";
+import { Banner, ButtonLink, Carousel, useCategory } from "../components";
 import { Link } from "react-router-dom";
 import { TMenuItemCategory } from "../lib";
 
@@ -36,9 +36,9 @@ const HomeCard = () => {
           </span>
         </h1>
       </div>
-      <div className="flex">
+      {/* <div className="flex">
         <img
-          className="aspect-sqaure w-3/5 drop-shadow-xl"
+          className="aspect-video w-3/5 drop-shadow-xl"
           src={
             "https://images.unsplash.com/photo-1602080926844-153f7ff5ce66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           }
@@ -53,7 +53,8 @@ const HomeCard = () => {
           similique perferendis, alias vel et? Tempora possimus rem soluta qui
           provident. Nihil.
         </div>
-      </div>
+      </div> */}
+      <Carousel />
     </div>
   );
 };
