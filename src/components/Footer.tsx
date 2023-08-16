@@ -11,11 +11,10 @@ export const Footer = ({ setCategory }: FooterProps) => {
 
   const mapMenuLinks = (category: TMenuItemCategory, index: number) => {
     return (
-      <>
+      <div key={index}>
         {category === "All" ? (
           <Link
             to={"./menu"}
-            key={index}
             onClick={() => setCategory(category)}
             className="text-center text-xl"
             style={{ fontFamily: "Oleo Script", fontSize: "2rem" }}
@@ -23,16 +22,19 @@ export const Footer = ({ setCategory }: FooterProps) => {
             Menu
           </Link>
         ) : (
-          <Link to={"./menu"} key={index} onClick={() => setCategory(category)}>
+          <Link to={"./menu"} onClick={() => setCategory(category)}>
             {category}
           </Link>
         )}
-      </>
+      </div>
     );
   };
 
   return (
-    <div className="bg-amber-950 text-white grid grid-cols-2 md:grid-cols-6 gap-4 py-10 mx-auto">
+    <div
+      className="bg-amber-950 text-white grid grid-cols-2 md:grid-cols-6 gap-4 py-10 mx-auto"
+      style={{ backgroundColor: "#48250F" }}
+    >
       <div
         className="col-span-3 flex flex-col mx-auto text-xl"
         style={{ fontFamily: "Oleo Script", fontSize: "2rem" }}
