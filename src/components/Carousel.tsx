@@ -6,6 +6,7 @@ import { ButtonLink } from ".";
 
 export const Carousel = () => {
   const [isShowing, setIsShowing] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const images: {
     src: string;
@@ -34,16 +35,21 @@ export const Carousel = () => {
   ];
 
   const handleRightButton = useCallback(() => {
-    setIsShowing((isShowing + 1) % images.length);
-  }, [images.length, isShowing]);
+    if (isAnimating) return;
+    setIsShowing((prev) => (prev + 1) % images.length);
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 750);
+  }, [images.length]);
 
   useEffect(() => {
-    const intervalId = setInterval(handleRightButton, 10000);
+    const intervalId = setInterval(handleRightButton, 7500);
     return () => clearInterval(intervalId);
   }, [isShowing, handleRightButton]);
 
   function handleLeftButton() {
-    setIsShowing((isShowing - 1 + images.length) % images.length);
+    setIsShowing((prev) => (prev - 1 + images.length) % images.length);
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 750);
   }
 
   const mapCarousel = (carouselData: {
@@ -54,7 +60,7 @@ export const Carousel = () => {
   }) => {
     return (
       <>
-        <img className="aspect-auto " src={carouselData.src} alt="donuts" />
+        <img src={carouselData.src} alt="donuts" />
         <div
           className="flex flex-col justify-around items-center self-stretch min-w-full py-5 bg-rose-600 text-white px-10"
           style={{ backgroundColor: carouselData.bgColor }}
@@ -84,9 +90,14 @@ export const Carousel = () => {
   ) => {
     return (
       <button
+        disabled={isAnimating}
         key={index}
-        onClick={() => setIsShowing(index)}
-        className="bg-transparent"
+        onClick={() => {
+          setIsAnimating(true);
+          setIsShowing(index);
+          setTimeout(() => setIsAnimating(false), 750);
+        }}
+        className="bg-transparent hover:cursor-pointer"
       >
         {/* <img
             className="w-3/4"
@@ -112,12 +123,24 @@ export const Carousel = () => {
           {images.map(mapCarousel)}
         </div>
       </div>
-      <div className="flex justify-center items-center pt-2">
-        <button onClick={handleLeftButton} className="bg-transparent">
+      <div
+        className={`flex justify-center items-center pt-2
+
+        }`}
+      >
+        <button
+          onClick={handleLeftButton}
+          className="bg-transparent cursor-pointer"
+          disabled={isAnimating}
+        >
           <FiChevronLeft size={20} />
         </button>
         {images.map(mapDots)}
-        <button onClick={handleRightButton} className="bg-transparent">
+        <button
+          onClick={handleRightButton}
+          className="bg-transparent cursor-pointer"
+          disabled={isAnimating}
+        >
           <FiChevronRight size={20} />
         </button>
       </div>

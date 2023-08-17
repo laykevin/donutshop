@@ -13,8 +13,8 @@ export const Home = () => {
       ></Banner>
       <HomeCard />
       <ThreeImagesCard />
-      <HomeCard />
-      <ThreeImagesCard />
+      {/* <HomeCard />
+      <ThreeImagesCard /> */}
     </>
   );
 };

@@ -95,7 +95,7 @@
 }
 
 .carousel-animate {
-  transition: transform 1s ease-in;
+  transition: transform 0.75s ease-in;
   /* transform: translateX(-500px); */
   /* animation: next-carousel-animation 0.5s ease-in-out; */
 }

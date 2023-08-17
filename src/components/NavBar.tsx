@@ -8,7 +8,7 @@ export const NavBar = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center h-16 mx-auto px-16 bg-rose-50">
+      <nav className="flex justify-between items-center h-16 mx-auto px-16 bg-rose-50">
         <Link to={"/"}>Donuts Tyme</Link>
         <div className="flex gap-5">
           <Link to={"/menu"} onClick={() => setCategory("All")}>
@@ -17,7 +17,7 @@ export const NavBar = () => {
           <Link to={"/about"}>About</Link>
           <span>555-555-5555</span>
         </div>
-      </div>
+      </nav>
       <Outlet context={[category, setCategory]} />
       <Footer setCategory={setCategory} />
     </>

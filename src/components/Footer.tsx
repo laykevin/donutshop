@@ -31,7 +31,7 @@ export const Footer = ({ setCategory }: FooterProps) => {
   };
 
   return (
-    <div
+    <footer
       className="bg-amber-950 text-white grid grid-cols-2 md:grid-cols-6 gap-4 py-10 mx-auto"
       style={{ backgroundColor: "#48250F" }}
     >
@@ -56,6 +56,6 @@ export const Footer = ({ setCategory }: FooterProps) => {
         </a>
         <div>☎️ (951) 351-1222</div>
       </div>
-    </div>
+    </footer>
   );
 };
