@@ -12,7 +12,7 @@ export const Carousel = () => {
     src: string;
     bgColor: string;
     title: string;
-    buttonLink: TMenuItemCategory;
+    buttonLink?: TMenuItemCategory;
   }[] = [
     {
       src: "https://images.unsplash.com/photo-1602080926844-153f7ff5ce66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -38,31 +38,36 @@ export const Carousel = () => {
     if (isAnimating) return;
     setIsShowing((prev) => (prev + 1) % images.length);
     setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 750);
+    setTimeout(() => setIsAnimating(false), 700);
   }, [images.length]);
 
   useEffect(() => {
-    const intervalId = setInterval(handleRightButton, 7500);
+    const intervalId = setInterval(handleRightButton, 7000);
     return () => clearInterval(intervalId);
   }, [isShowing, handleRightButton]);
 
   function handleLeftButton() {
     setIsShowing((prev) => (prev - 1 + images.length) % images.length);
     setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 750);
+    setTimeout(() => setIsAnimating(false), 700);
   }
 
-  const mapCarousel = (carouselData: {
-    src: string;
-    bgColor: string;
-    title: string;
-    buttonLink: TMenuItemCategory;
-  }) => {
+  const mapCarousel = (
+    carouselData: {
+      src: string;
+      bgColor: string;
+      title: string;
+      buttonLink?: TMenuItemCategory;
+    },
+    index: number
+  ) => {
     return (
-      <>
-        <img src={carouselData.src} alt="donuts" />
+      <div className="flex flex-col lg:flex-row min-w-full" key={index}>
+        <div className={`aspect-video ${index % 2 !== 0 ? "lg:order-1" : ""}`}>
+          <img src={carouselData.src} alt="donuts" />
+        </div>
         <div
-          className="flex flex-col justify-around items-center self-stretch min-w-full py-5 bg-rose-600 text-white px-10"
+          className="flex flex-col justify-around items-center py-5 bg-rose-600 text-center text-white px-10"
           style={{ backgroundColor: carouselData.bgColor }}
         >
           <h1 style={{ fontFamily: "Francois One" }}>{carouselData.title}</h1>
@@ -76,7 +81,7 @@ export const Carousel = () => {
             <ButtonLink menuCategory={carouselData.buttonLink} />
           )}
         </div>
-      </>
+      </div>
     );
   };
 
@@ -95,7 +100,7 @@ export const Carousel = () => {
         onClick={() => {
           setIsAnimating(true);
           setIsShowing(index);
-          setTimeout(() => setIsAnimating(false), 750);
+          setTimeout(() => setIsAnimating(false), 700);
         }}
         className="bg-transparent hover:cursor-pointer"
       >
@@ -115,10 +120,10 @@ export const Carousel = () => {
 
   return (
     <>
-      <div className="overflow-hidden grid grid-cols-1 md:grid-cols-2">
+      <div className="overflow-hidden">
         <div
-          className={"flex ease-in-out carousel-animate min-w-full"}
-          style={{ transform: `translateX(-${isShowing * 200}%)` }}
+          className={"flex ease-in-out carousel-animate w-full"}
+          style={{ transform: `translateX(-${isShowing * 100}%)` }}
         >
           {images.map(mapCarousel)}
         </div>
