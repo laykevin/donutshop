@@ -4,22 +4,20 @@ import { Footer } from ".";
 import { TMenuItemCategory } from "../lib";
 
 export const NavBar = () => {
-  const [category, setCategory] = useState<TMenuItemCategory>("All");
-
+  // const [category, setCategory] = useState<TMenuItemCategory>("All");
+  console.log("RenderChecker");
   return (
     <>
       <nav className="flex justify-between items-center h-16 mx-auto px-16 bg-rose-50">
         <Link to={"/"}>Donuts Tyme</Link>
         <div className="flex gap-5">
-          <Link to={"/menu"} onClick={() => setCategory("All")}>
-            Menu
-          </Link>
+          <Link to={"/menu"}>Menu</Link>
           <Link to={"/about"}>About</Link>
           <span>555-555-5555</span>
         </div>
       </nav>
-      <Outlet context={[category, setCategory]} />
-      <Footer setCategory={setCategory} />
+      <Outlet />
+      <Footer />
     </>
   );
 };

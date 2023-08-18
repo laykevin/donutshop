@@ -1,6 +1,6 @@
 import { Banner, ButtonLink, Carousel, useCategory } from "../components";
 import { Link } from "react-router-dom";
-import { TMenuItemCategory } from "../lib";
+import { ECategoryToParams, TMenuItemCategory } from "../lib";
 
 export const Home = () => {
   return (
@@ -11,6 +11,7 @@ export const Home = () => {
         }
         textContent={"Home Change Me!"}
       ></Banner>
+      <GoogleMapsSlide />
       <HomeCard />
       <ThreeImagesCard />
       {/* <HomeCard />
@@ -60,7 +61,6 @@ const HomeCard = () => {
 };
 
 const ThreeImagesCard = () => {
-  const [, setCategory] = useCategory();
   const pictureCategories: [TMenuItemCategory, string][] = [
     ["Coffee & Drinks", "#FFEADD"],
     ["Donuts", "#FCAEAE"],
@@ -77,7 +77,7 @@ const ThreeImagesCard = () => {
         style={{ backgroundColor: category[1] }}
         key={index}
       >
-        <Link to={"/menu"} onClick={() => setCategory(category[0])}>
+        <Link to={`/menu?sort=${ECategoryToParams[category[0]]}`}>
           {/* <img src={`/src/assets/DonutsTyme${category[0]}.png`} alt={category[0]} /> */}
           <img src={`/src/assets/DonutsTymeDonuts.png`} alt={category[0]} />
           <div className="absolute inset-0 hover:bg-black/70 opacity-0 hover:opacity-100  ease-in-out duration-300 h-full w-full flex flex-col items-center justify-center text-white os-font">
@@ -110,5 +110,50 @@ const ThreeImagesCard = () => {
         {pictureCategories.map(mapPictures)}
       </div>
     </>
+  );
+};
+
+const GoogleMapsSlide = () => {
+  return (
+    <div className="flex flex-col lg:flex-row min-w-full">
+      <div className="aspect-video w-full">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sus!4v1692373970626!5m2!1sen!2sus!6m8!1m7!1sfUSRFDlwAjFDfv1XA0Nx6g!2m2!1d33.94633874276882!2d-117.4785328236543!3f139.42969476620226!4f4.471584433928783!5f1.1924812503605782"
+          width={"100%"}
+          height={"100%"}
+          style={{ border: "0" }}
+          // allowfullscreen={false}
+          loading="lazy"
+          // referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <div
+        className="flex flex-col justify-around items-center py-5 bg-rose-600 text-center text-white px-10 w-full"
+        style={{ backgroundColor: "gray" }}
+      >
+        <h1 style={{ fontFamily: "Francois One" }}>Arlington & Tyler!</h1>
+        <span style={{ fontFamily: "Ubuntu Condensed", fontSize: "1.5rem" }}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+          tempore provident quia nostrum iure minima suscipit nam totam
+          similique perferendis, alias vel et? Tempora possimus rem soluta qui
+          provident. Nihil.
+        </span>
+        <Link to="https://goo.gl/maps/JRQGtAFHyJjEAFai6" target="_blank">
+          <button
+            className="w-full px-5 py-3 ease-in-out duration-300 bg-red-100 hover:bg-red-200 rounded-full drop-shadow-xl text-white"
+            style={{
+              backgroundColor: "#FF6666",
+              fontFamily: "Bayon",
+              fontSize: "1.5rem",
+            }}
+          >
+            Get Directions!
+          </button>
+        </Link>
+        {/* {carouselData.buttonLink && (
+            <ButtonLink menuCategory={carouselData.buttonLink} />
+          )} */}
+      </div>
+    </div>
   );
 };

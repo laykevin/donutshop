@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { FooterProps, TMenuItemCategory } from "../lib";
+import { ECategoryToParams, FooterProps, TMenuItemCategory } from "../lib";
 
-export const Footer = ({ setCategory }: FooterProps) => {
+export const Footer = () => {
   const categoryArray: Array<TMenuItemCategory> = [
     "All",
     "Donuts",
@@ -15,14 +15,13 @@ export const Footer = ({ setCategory }: FooterProps) => {
         {category === "All" ? (
           <Link
             to={"./menu"}
-            onClick={() => setCategory(category)}
             className="text-center text-xl"
             style={{ fontFamily: "Oleo Script", fontSize: "2rem" }}
           >
             Menu
           </Link>
         ) : (
-          <Link to={"./menu"} onClick={() => setCategory(category)}>
+          <Link to={`./menu/?sort=${ECategoryToParams[category]}`}>
             {category}
           </Link>
         )}
