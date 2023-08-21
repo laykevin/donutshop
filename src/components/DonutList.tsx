@@ -6,6 +6,8 @@ export const DonutList = ({
   setCategory,
   setSortMenu,
   sortMenu,
+  setSortParams,
+  category,
 }: DonutListProps) => {
   // const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
@@ -75,6 +77,8 @@ export const DonutList = ({
         scrollDir={scrollDir}
         setScrollDir={setScrollDir}
         setCategory={setCategory}
+        setSortParams={setSortParams}
+        category={category}
       />
       <div
         className="flex flex-wrap menu-fade root"

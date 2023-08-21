@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { menuData, IMenuItem, SetSortMenu, TMenuItemCategory } from "../lib";
+import {
+  menuData,
+  IMenuItem,
+  SetSortMenu,
+  TMenuItemCategory,
+  ECategoryToParams,
+} from "../lib";
 import { useCategory } from ".";
 
 export const CategoryNav = ({
@@ -7,9 +13,11 @@ export const CategoryNav = ({
   scrollDir,
   setScrollDir,
   setCategory,
+  setSortParams,
+  category,
 }: SetSortMenu) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [category] = useCategory();
+  // const [category] = useCategory();
 
   const categories: TMenuItemCategory[] = [
     "Donuts",
@@ -20,10 +28,13 @@ export const CategoryNav = ({
 
   const filterMenuByCategory = (cat: TMenuItemCategory) => {
     setCategory(cat === category ? "All" : cat);
+    setSortParams(`sort=${ECategoryToParams[cat]}`);
     setScrollDir("scrolling up");
     if (cat === "All" || cat === category) {
+      console.log("OVER HERE LOOK");
       setSortMenu(menuData);
       setCategory("All");
+      setSortParams("");
     } else {
       setSortMenu(
         menuData.filter((menuItem: IMenuItem) => menuItem.category === category)

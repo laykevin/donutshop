@@ -5,3 +5,4 @@ export * from "./Banner";
 export * from "./AboutCard";
 export * from "./Footer";
 export * from "./ButtonLink";
+export * from "./Carousel";
