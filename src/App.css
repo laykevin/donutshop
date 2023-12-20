@@ -101,7 +101,7 @@
 }
 
 .menu-animation {
-  animation: menu-drawer-animation 0.2s ease-in-out;
+  animation: menu-drawer-animation 0.35s ease;
 }
 
 @keyframes menu-drawer-animation {

@@ -1,10 +1,12 @@
-import { SetURLSearchParams } from "react-router-dom";
+import { SetURLSearchParams } from 'react-router-dom';
+
+export type TMenuItemCategory = 'Donuts' | 'Breakfast' | 'Coffee & Drinks' | 'All';
 
 export interface IMenuItem {
   name: string;
   description: string;
   img: string;
-  category: "Donuts" | "Breakfast" | "Coffee & Drinks" | "All";
+  category: TMenuItemCategory;
 }
 
 export type TMenu = IMenuItem[];
@@ -21,16 +23,10 @@ export interface DonutListProps {
   category: TMenuItemCategory;
 }
 
-export type TMenuItemCategory =
-  | "Donuts"
-  | "Breakfast"
-  | "Coffee & Drinks"
-  | "All";
-
 export interface SetSortMenu {
   setSortMenu: React.Dispatch<React.SetStateAction<TMenu>>;
-  scrollDir: string;
-  setScrollDir: React.Dispatch<React.SetStateAction<string>>;
+  scrollDir: 'scrolling up' | 'scrolling down';
+  setScrollDir: React.Dispatch<React.SetStateAction<'scrolling up' | 'scrolling down'>>;
   setCategory: React.Dispatch<React.SetStateAction<TMenuItemCategory>>;
   setSortParams: SetURLSearchParams;
   category: TMenuItemCategory;
@@ -57,8 +53,8 @@ export type FooterProps = {
 };
 
 export enum ECategoryToParams {
-  "Donuts" = "donuts",
-  "Coffee & Drinks" = "drinks",
-  "Breakfast" = "breakfast",
-  "All" = "",
+  'Donuts' = 'donuts',
+  'Coffee & Drinks' = 'drinks',
+  'Breakfast' = 'breakfast',
+  'All' = '',
 }

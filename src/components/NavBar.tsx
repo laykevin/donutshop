@@ -25,7 +25,10 @@ export const NavBar = () => {
     index: number
   ) => {
     return (
-      <div className="border-b-2 py-2 ps-1 pe-2" key={index}>
+      <div
+        className={`${index === 2 ? "" : "border-b-2"} py-2 ps-1 pe-2`}
+        key={index}
+      >
         <Link
           to={`/menu?sort=${ECategoryToParams[dropdownCategory]}`}
           className="flex items-center gap-1"
@@ -40,7 +43,7 @@ export const NavBar = () => {
   return (
     <>
       <nav
-        className="flex justify-between items-center h-16 mx-auto px-16 bg-rose-400 text-white mb-1"
+        className="flex justify-between items-center h-16 mx-auto px-16 bg-rose-400 text-white"
         onClick={handleClick}
       >
         <Link to={"/"}>

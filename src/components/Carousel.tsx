@@ -39,7 +39,7 @@ export const Carousel = () => {
     setIsShowing((prev) => (prev + 1) % images.length);
     setIsAnimating(true);
     setTimeout(() => setIsAnimating(false), 700);
-  }, [images.length]);
+  }, [images.length, isAnimating]);
 
   useEffect(() => {
     const intervalId = setInterval(handleRightButton, 7000);
@@ -120,16 +120,33 @@ export const Carousel = () => {
 
   return (
     <>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden mb-1 relative">
         <div
           className={"flex ease-in-out carousel-animate w-full"}
           style={{ transform: `translateX(-${isShowing * 100}%)` }}
         >
           {images.map(mapCarousel)}
         </div>
+        <div
+          className="absolute flex items-center left-0 top-0 h-full bg-gradient-to-r from-white hover:from-black cursor-pointer px-3 ease-in-out duration-500 hover:text-white my-1"
+          onClick={handleLeftButton}
+          disabled={isAnimating}
+        >
+          <FiChevronLeft size={50} />
+        </div>
+        {/* <div className="bg-white self-end flex items-end">
+          {images.map(mapDots)}
+        </div> */}
+        <div
+          className="absolute flex items-center right-0 top-0 h-full bg-gradient-to-r from-transparent to-white cursor-pointer px-3 hover:bg-gray-500/75 ease-in-out duration-500 hover:text-white my-1"
+          onClick={handleRightButton}
+          disabled={isAnimating}
+        >
+          <FiChevronRight size={50} />
+        </div>
       </div>
       <div
-        className={`flex justify-center items-center pt-2
+        className={`flex justify-center items-center pt-2 bg-lime-500
 
         }`}
       >
