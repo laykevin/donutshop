@@ -95,16 +95,20 @@
 }
 
 .carousel-animate {
-  transition: transform 0.75s ease-in;
+  transition: transform 0.75s ease-out;
   /* transform: translateX(-500px); */
   /* animation: next-carousel-animation 0.5s ease-in-out; */
 }
 
-@keyframes next-carousel-animation {
-  from {
-    transform: translateX(0);
+.menu-animation {
+  animation: menu-drawer-animation 0.35s ease;
+}
+
+@keyframes menu-drawer-animation {
+  0% {
+    max-height: 0px;
   }
-  to {
-    transform: translateX(-100%);
+  100% {
+    max-height: 175px;
   }
 }

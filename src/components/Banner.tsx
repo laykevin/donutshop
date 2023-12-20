@@ -3,7 +3,7 @@ import { BannerProps } from "../lib";
 export const Banner = ({ imgPath, textContent }: BannerProps) => {
   return (
     <div
-      className="h-64 md:h-96 relative mx-auto menu-fade drop-shadow-2xl"
+      className="h-64 md:h-96 relative mx-auto menu-fade drop-shadow-2xl my-1"
       style={{
         backgroundImage: `url(${imgPath})`,
         backgroundSize: "cover",

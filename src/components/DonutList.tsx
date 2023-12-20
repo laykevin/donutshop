@@ -1,8 +1,8 @@
-import { IMenuItem, TMenuProps, DonutListProps } from "../lib";
-import { useEffect, useRef, useState } from "react";
-import { CategoryNav } from ".";
+import { IMenuItem, TMenuProps, DonutListProps } from '../lib';
+import React, { useEffect, useRef, useState } from 'react';
+import { CategoryNav } from '.';
 
-export const DonutList = ({
+export const DonutList: React.FC<DonutListProps> = ({
   setCategory,
   setSortMenu,
   sortMenu,
@@ -11,7 +11,7 @@ export const DonutList = ({
 }: DonutListProps) => {
   // const [sortMenu, setSortMenu] = useState<TMenu>(menuData);
   const scrollHeightRef = useRef<HTMLDivElement>(null);
-  const [scrollDir, setScrollDir] = useState("scrolling up");
+  const [scrollDir, setScrollDir] = useState<'scrolling up' | 'scrolling down'>('scrolling up');
 
   useEffect(() => {
     console.log(window.scrollY);
@@ -28,7 +28,7 @@ export const DonutList = ({
         ticking = false;
         return;
       }
-      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      setScrollDir(scrollY > lastScrollY ? 'scrolling down' : 'scrolling up');
       lastScrollY = scrollY > 0 ? scrollY : 75;
       ticking = false;
     };
@@ -40,16 +40,16 @@ export const DonutList = ({
       }
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
     console.log(scrollDir);
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, [scrollDir]);
 
   useEffect(() => {
     if (scrollHeightRef.current) {
       // scrollHeightRef.current.scrollTop = scrollHeightRef.current.scrollHeight;
-      console.log("fgdfsg");
+      console.log('fgdfsg');
       console.log(scrollHeightRef.current?.scrollHeight);
     }
   }, [sortMenu]);
@@ -58,10 +58,7 @@ export const DonutList = ({
     return (
       <>
         {menuItem.category !== sortMenu[index - 1]?.category && (
-          <h2
-            className="w-full text-center py-4 os-font"
-            key={menuItem.category}
-          >
+          <h2 className="w-full text-center py-4 os-font" key={menuItem.category}>
             {menuItem.category}
           </h2>
         )}
@@ -80,11 +77,7 @@ export const DonutList = ({
         setSortParams={setSortParams}
         category={category}
       />
-      <div
-        className="flex flex-wrap menu-fade root"
-        style={{ minHeight: "50vh" }}
-        ref={scrollHeightRef}
-      >
+      <div className="flex flex-wrap menu-fade root" style={{ minHeight: '50vh' }} ref={scrollHeightRef}>
         {sortMenu.map(mapMenuItems)}
       </div>
     </div>
@@ -94,12 +87,7 @@ export const DonutList = ({
 const MenuItemCard = ({ menuItem }: TMenuProps) => {
   return (
     <div className="flex flex-col md:flex-row items-center w-full md:w-1/2 menu-fade">
-      <img
-        className="w-1/5 aspect-square p-2.5"
-        style={{ minWidth: "80px" }}
-        src={menuItem.img}
-        alt={menuItem.name}
-      />
+      <img className="w-1/5 aspect-square p-2.5" style={{ minWidth: '80px' }} src={menuItem.img} alt={menuItem.name} />
       <div className="pl-2.5 text-center md:text-left">
         <p className="font-black">{menuItem.name}</p>
         <p>{menuItem.description}</p>

@@ -9,7 +9,7 @@ export const Home = () => {
         imgPath={
           "https://lh3.googleusercontent.com/p/AF1QipPmk0sjqUfdNcJRYp-lRNaLSe7wkH-OtqG_DmSg=s1360-w1360-h1020"
         }
-        textContent={"Home Change Me!"}
+        textContent={"Donuts Tyme"}
       ></Banner>
       {/* <GoogleMapsSlide /> */}
       <HomeCard />
@@ -23,21 +23,21 @@ export const Home = () => {
 
 const HomeCard = () => {
   return (
-    <div style={{ backgroundColor: "#f4f4f4" }}>
-      <div className="flex flex-col items-center justify-center max-w-7xl py-5 m-auto">
+    <div className="">
+      {/* <div className="flex flex-col items-center justify-center py-5 my-1 bg-yellow-500">
         <h1 className="text-center py-4 text-rose-800 max-w-2xl m-auto rounded-l ">
           <span
             className="shadow-2xl rounded-l shadow-rose-200 px-4 py-2"
             style={{
-              background:
-                "linear-gradient(to bottom, #f4f4f4, rgb(255 228 230)",
+              // background:
+              //   "linear-gradient(to bottom, #f4f4f4, rgb(255 228 230)",
               fontFamily: "Rampart One",
             }}
           >
             Donuts Tyme
           </span>
         </h1>
-      </div>
+      </div> */}
       {/* <div className="flex">
         <img
           className="aspect-video w-3/5 drop-shadow-xl"
@@ -99,9 +99,9 @@ const ThreeImagesCard = () => {
   return (
     <>
       <div
-        className="flex items-center w-full justify-center py-7 text-4xl"
+        className="flex items-center w-full justify-center py-7 text-4xl bg-lime-500 text-white mb-1 text-center"
         style={{
-          background: "linear-gradient(to bottom, #f4f4f4, rgb(255 228 230)",
+          // background: "linear-gradient(to bottom, #f4f4f4, rgb(255 228 230)",
           fontFamily: "Rampart One",
         }}
       >
